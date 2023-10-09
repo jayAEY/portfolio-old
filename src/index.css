@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* THINGS TO DO
+- group css styles
+- animation for expanding project?
+- make all links open in new window
+- add non web projects
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 *,
 * ::before,
@@ -9,40 +16,39 @@
 }
 
 body {
-  /* width: 100vw; */
-  /* width: 100svw; */
-  /* overflow-x: hidden; */
-  /* min-height: 100svh; */
   display: flex;
   justify-content: center;
-  background-color: #ffc815;
-  font-family: 'Rubik', sans-serif;
-  /* overflow-y: hidden; */
 
+  --dark-gray: #292929;
+  --light-gray: #585858;
+  --yellow: #ffc815;
+  --white: #ffffff;
+  --black: #000000;
+
+  --lineWidth: 100px;
+  --box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.4);
+  --animation-general: all 0.3s ease-in-out;
+  --animation-line: all 0.5s ease-in-out;
+
+  background-color: var(--yellow);
+
+  font-family: "Rubik", system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 
-  width: 100%;
+  width: 100svw;
   height: auto;
-  /* min-height: 100svh; */
   margin: 0;
   padding: 0;
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  overflow-x: hidden;
+
   font-size: 11pt;
   line-height: 1.1;
-  /* line-height: 1.2; */
-  /* font-weight: 400; */
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  text-rendering: optimizeLegibility;
-
-  /* overflow-y: hidden; */
+  text-rendering: optimizeSpeed;
 }
 
 header {
@@ -52,8 +58,7 @@ header {
   height: min-content;
   align-items: flex-start;
   justify-content: space-between;
-  justify-self: center;
-  color: #585858;
+  color: var(--light-gray);
   padding: 15px 6% 15px 6%;
   text-align: left;
 }
@@ -62,43 +67,25 @@ header h1 {
   position: relative;
   font-size: 10vw;
   font-weight: 900;
-  color: #ffc81500;
+  color: var(--yellow);
   flex-direction: row;
   flex-basis: 100%;
   line-height: 1;
-  -webkit-text-stroke: #585858 1.5px;
+  -webkit-text-stroke: var(--light-gray) 1.5px;
   cursor: pointer;
-}
-
-h1::before {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 8%;
-  bottom: 45.2px;
-  left: 0;
-  background-color: white;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: all 0.3s;
-  z-index: -1;
-}
-
-h1:hover::before {
-  transform: scaleX(1);
 }
 
 h1::after {
   content: "";
   position: absolute;
-  width: 100%;
-  height: 8%;
-  bottom: -3px;
+  width: var(--lineWidth);
+  height: 8px;
+  bottom: -4px;
   left: 0;
-  background-color: white;
+  background-color: var(--white);
   transform-origin: left;
   transform: scaleX(0);
-  transition: all 0.3s;
+  transition: var(--animation-line);
   z-index: -1;
 }
 
@@ -108,14 +95,15 @@ h1:hover::after {
 
 header p {
   flex-basis: 100%;
-  color: #585858;
+  min-width: 150px;
+  color: var(--light-gray);
 }
 
 a {
   position: relative;
   color: inherit;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: var(--animation-general);
 }
 
 a:visited {
@@ -124,7 +112,7 @@ a:visited {
 
 a:hover {
   scale: 1.2;
-  color: #ffc815;
+  color: var(--yellow);
 }
 
 a::before {
@@ -135,14 +123,14 @@ a::before {
   bottom: -0.5px;
   left: -4.405px;
   border-radius: 1000px;
-  background-color: white;
-  transform: scale3d(0,0,0);
-  transition: all 0.1s;
+  background-color: var(--white);
+  transform: scale3d(0, 0, 0);
+  transition: var(--animation-general);
   z-index: -1;
 }
 
 a:hover::before {
-  transform: scale3d(1,1,1);
+  transform: scale3d(1, 1, 1);
 }
 
 #links {
@@ -158,17 +146,16 @@ a:hover::before {
   max-width: 1200px;
   gap: 20px;
   padding: 15px 6% 6% 6%;
-  transition: all 0.2s;
+  transition: var(--animation-general);
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .project {
   display: flex;
   padding: 56% 0;
-  border-radius: 10px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shadow);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: var(--animation-general);
   align-content: flex-start;
 }
 
@@ -185,59 +172,93 @@ a:hover::before {
   left: 110px;
   width: min-content;
   flex-wrap: wrap;
-  font-size: 30pt;
+  font-size: 28pt;
+  font-weight: 700;
   pointer-events: none;
-  color: #ffc815;
-  transition: all 0.2s ease-in-out;
+  color: var(--yellow);
+  transition: var(--animation-general);
+  z-index: 0;
 }
 
 .project:hover h2 {
-  transform: translate(-90px);
+  transform: translate(-100px);
   opacity: 1;
 }
 
-.project-expand { 
+.project h2::after {
+  display: block;
+  content: "";
+  position: relative;
+  width: var(--lineWidth);
+  height: 8px;
+  left: 0;
+  bottom: 3px;
+  background-color: var(--white);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: var(--animation-line);
+  z-index: -1;
+}
+
+.project:hover > h2::after {
+  transform: scaleX(1);
+}
+
+.project-expand {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: calc(500px - 12%);
-  max-width: 90%;
-  padding: 35px;
-  align-self: flex-start;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  justify-content: center;
   justify-self: center;
-  background: white;
-  color: #585858;
-  border-radius: 20px;
-  box-shadow: none;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.6);
+  text-align: left;
+  background: var(--dark-gray);
+  color: var(--white);
+  box-shadow: var(--box-shadow);
 }
 
 #close-button {
   position: relative;
-  margin-left: -20px;
-  margin-top: -20px;
+  top: -10px;
+  left: -10px;
   scale: 1.5;
-  transition: all 0.2s;
+  transition: var(--animation-general);
 }
 
 #close-button:hover {
-  scale: 1.7;
+  scale: 1.6;
   cursor: pointer;
-  fill: #ffc815;
+  fill: var(--yellow);
 }
 
 .project-expand h2 {
   position: relative;
-  /* -webkit-text-stroke: #585858 1.5px;
-  -webkit-text-stroke: #ffc815 2px;
-
-  color: #58585800; */
-  color: #ffc815;
+  color: var(--yellow);
   position: relative;
-  font-size: 20pt;
-  text-transform: uppercase;
+  font-size: 10vw;
   font-weight: 900;
-  line-height: 0.8;
+  line-height: 01;
+  z-index: 0;
+}
+
+.project-expand h2::after {
+  content: "";
+  position: absolute;
+  width: var(--lineWidth);
+  height: 8px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--white);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: var(--animation-line);
+  z-index: -1;
+}
+
+.project-expand h2:hover::after {
+  transform: scaleX(1);
 }
 
 .project-links {
@@ -252,7 +273,7 @@ a:hover::before {
 }
 
 .project-expand a:hover {
-  color: white;
+  color: var(--white);
   scale: 1.55;
 }
 
@@ -264,43 +285,44 @@ a:hover::before {
   bottom: -0.5px;
   left: -4.405px;
   border-radius: 1000px;
-  background-color: #ffc815;
-  transform: scale3d(0,0,0);
-  transition: all 0.1s;
+  background-color: var(--yellow);
+  transform: scale3d(0, 0, 0);
+  transition: var(--animation-general);
   z-index: -1;
 }
 
 .project-expand a:hover::before {
-  transform: scale3d(1,1,1);
-}
-
-.image-container {
-  overflow: hidden;
-  transition: all 0.2s;
-}
-
-.image-container:hover {
-  scale: 1.01;
-  cursor: pointer;
-  opacity: 0.8;
-  transform: translateY(-5px);
+  transform: scale3d(1, 1, 1);
 }
 
 .project-expand img {
   position: relative;
   object-fit: cover;
   width: 100%;
-  max-height: 300px;
 }
 
-@media screen and (min-width: 400px) {
+.image-container {
+  overflow: hidden;
+  transition: var(--animation-general);
+}
+
+.image-container:hover {
+  scale: 1.01;
+  cursor: pointer;
+  opacity: 0.7;
+  transform: translateY(-5px);
+}
+
+@media screen and (min-width: 500px) {
   header h1 {
     font-size: 36pt;
   }
-}
 
-/* dark gray #292929	(41,41,41)
-light gray #585858	(88,88,88)
-yellow #ffc815	(255,200,21)
-white #ffffff	(255,255,255)
-black #000000	(0,0,0) */
+  header p {
+    min-width: 220px;
+  }
+
+  .project-expand h2 {
+    font-size: 40pt;
+  }
+}
